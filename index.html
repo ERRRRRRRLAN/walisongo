@@ -3,1366 +3,1502 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jejak Sunan Kalijaga - Wali Penyebar Islam Nusantara</title>
-    <link href="https://fonts.googleapis.com/css2?display=swap&family=Newsreader:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#8B4513",
-                        secondary: "#D2691E",
-                        accent: "#CD853F",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101c22",
-                    },
-                    fontFamily: {
-                        display: ["Newsreader"],
-                        sans: ["Inter", "Noto Sans"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.25rem",
-                        lg: "0.5rem",
-                        xl: "0.75rem",
-                        full: "9999px"
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.3s ease-out',
-                        'float': 'float 3s ease-in-out infinite',
-                    },
-                },
-            },
-        };
-    </script>
+    <title>Learning Blog - Sunan Giri & Sunan Bonang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+
+        :root {
+            --primary-color: #1a4d6e;
+            --secondary-color: #2d7a9f;
+            --accent-color: #f59e0b;
+            --accent-light: #fbbf24;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.25);
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(67, 233, 123, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+            overflow-x: hidden;
         }
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
-        }
-        .sidebar {
-            position: fixed;
-            right: -300px;
-            top: 0;
-            width: 300px;
-            height: 100vh;
-            background: white;
-            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-            transition: right 0.3s ease;
-            z-index: 1000;
-            overflow-y: auto;
-            padding: 2rem;
-        }
-        .sidebar.active {
-            right: 0;
-        }
-        .sidebar-overlay {
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-            display: none;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+            z-index: 10000;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
         }
-        .sidebar-overlay.active {
+
+        /* Header */
+        header {
+            background: rgba(26, 77, 110, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            color: white;
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 1rem 0;
+            background: rgba(26, 77, 110, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #1a4d6e 0%, #2d7a9f 50%, #1a4d6e 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(102, 126, 234, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Content */
+        main {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .sunan-section {
+            background: var(--bg-white);
+            margin: 4rem auto;
+            max-width: 1000px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .sunan-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light), var(--accent-color));
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+
+        .sunan-section:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: var(--shadow-xl);
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .sunan-header {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #f97316 50%, var(--accent-color) 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+            color: white;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sunan-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .sunan-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .sunan-header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
+        }
+
+        .sunan-content {
+            padding: 3rem 2.5rem;
+        }
+
+        .sunan-image-wrapper {
+            width: 100%;
+            max-width: 650px;
+            height: 450px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.4s ease;
+        }
+
+        .sunan-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .sunan-image-wrapper:hover::before {
+            left: 100%;
+        }
+
+        .sunan-image-wrapper:hover {
+            transform: scale(1.03);
+        }
+
+        .sunan-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .info-card {
+            background: #fefefe;
+            padding: 2rem 1.8rem;
+            border-radius: 18px 20px 19px 17px;
+            border: 1.5px solid rgba(0, 0, 0, 0.06);
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                        box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                        border-color 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: visible;
+            box-shadow: 
+                0 3px 10px rgba(0, 0, 0, 0.04),
+                0 6px 20px rgba(0, 0, 0, 0.02),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transform: rotate(-0.25deg);
+            will-change: transform, box-shadow;
+            backface-visibility: hidden;
+        }
+
+        .info-card:nth-child(1) {
+            transform: rotate(0.2deg);
+        }
+
+        .info-card:nth-child(2) {
+            transform: rotate(-0.3deg);
+        }
+
+        .info-card:nth-child(3) {
+            transform: rotate(0.15deg);
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(139, 127, 200, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(230, 168, 92, 0.08) 0%, transparent 50%);
+            border-radius: 18px 20px 19px 17px;
+            opacity: 0;
+            transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .info-card::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.02) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .info-card:hover::before {
+            opacity: 1;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px) rotate(0deg) scale(1.01);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.08),
+                0 15px 50px rgba(0, 0, 0, 0.06),
+                0 3px 8px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card h3 {
+            color: #1a202c;
+            margin-bottom: 1.1rem;
+            padding-bottom: 0.9rem;
+            font-size: 1.35rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            position: relative;
+            z-index: 2;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+        }
+
+        .info-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(90deg, #8b7fc8 0%, #e6a85c 50%, #7fb8a3 100%);
+            border-radius: 2px;
+            opacity: 0.7;
+        }
+
+        .info-card:nth-child(1) h3::after {
+            background: linear-gradient(90deg, #8b7fc8 0%, #764ba2 100%);
+        }
+
+        .info-card:nth-child(2) h3::after {
+            background: linear-gradient(90deg, #e6a85c 0%, #f59e0b 100%);
+        }
+
+        .info-card:nth-child(3) h3::after {
+            background: linear-gradient(90deg, #7fb8a3 0%, #10b981 100%);
+        }
+
+        .info-card p {
+            color: #2d3748;
+            line-height: 1.85;
+            font-size: 0.98rem;
+            position: relative;
+            z-index: 2;
+            letter-spacing: 0.02px;
+        }
+
+        .info-card strong {
+            color: #1a202c;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+        }
+
+        .content-section {
+            margin: 2.8rem 0;
+            padding: 2.5rem 2.2rem;
+            background: #fefefe;
+            border-radius: 20px 18px 22px 19px;
+            border: 1.5px solid rgba(0, 0, 0, 0.06);
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                        box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                        border-color 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: visible;
+            box-shadow: 
+                0 3px 10px rgba(0, 0, 0, 0.04),
+                0 6px 20px rgba(0, 0, 0, 0.02),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transform: rotate(-0.2deg);
+            will-change: transform, box-shadow;
+        }
+
+        .content-section:nth-child(even) {
+            transform: rotate(0.15deg);
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(139, 127, 200, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(230, 168, 92, 0.08) 0%, transparent 50%);
+            border-radius: 20px 18px 22px 19px;
+            opacity: 0;
+            transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .content-section::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.02) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .content-section:hover::before {
+            opacity: 1;
+        }
+
+        .content-section:hover {
+            transform: translateY(-4px) rotate(0deg) scale(1.01);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.08),
+                0 15px 50px rgba(0, 0, 0, 0.06),
+                0 3px 8px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h3 {
+            color: #1a202c;
+            font-size: 1.75rem;
+            margin-bottom: 1.4rem;
+            padding-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            position: relative;
+            z-index: 2;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .content-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #8b7fc8 0%, #e6a85c 50%, #7fb8a3 100%);
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+
+        .content-section:nth-child(even) h3::after {
+            background: linear-gradient(90deg, #e6a85c 0%, #7fb8a3 50%, #8b7fc8 100%);
+        }
+
+        .content-section p {
+            color: #2d3748;
+            line-height: 1.95;
+            margin-bottom: 1.3rem;
+            font-size: 1.06rem;
+            position: relative;
+            z-index: 2;
+            letter-spacing: 0.02px;
+        }
+
+        .content-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .location-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .location-list li {
+            background: #fefefe;
+            padding: 1.5rem 1.7rem;
+            border-radius: 14px 16px 15px 13px;
+            border: 1.5px solid rgba(0, 0, 0, 0.06);
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                        box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                        border-color 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: visible;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 
+                0 3px 10px rgba(0, 0, 0, 0.04),
+                0 6px 20px rgba(0, 0, 0, 0.02),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transform: rotate(0.15deg);
+            will-change: transform, box-shadow;
+        }
+
+        .location-list li:nth-child(odd) {
+            transform: rotate(-0.2deg);
+        }
+
+        .location-list li:nth-child(even) {
+            transform: rotate(0.25deg);
+        }
+
+        .location-list li::before {
+            content: '📍';
+            margin-right: 0.9rem;
+            font-size: 1.4rem;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            z-index: 2;
+            position: relative;
+        }
+
+        .location-list li:hover::before {
+            transform: scale(1.15) rotate(8deg);
+        }
+
+        .location-list li::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(139, 127, 200, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(230, 168, 92, 0.08) 0%, transparent 50%);
+            border-radius: 14px 16px 15px 13px;
+            opacity: 0;
+            transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .location-list li:hover::after {
+            opacity: 1;
+        }
+
+        .location-list li .location-hint {
+            position: absolute;
+            right: 1.5rem;
+            font-size: 0.82rem;
+            color: #718096;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            font-weight: 500;
+            z-index: 2;
+        }
+
+        .location-list li:hover .location-hint {
+            opacity: 1;
+        }
+
+        .location-list li:hover {
+            transform: translateY(-3px) rotate(0deg) scale(1.01);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.08),
+                0 15px 50px rgba(0, 0, 0, 0.06),
+                0 3px 8px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Metode Dakwah List */
+        .method-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .method-list li {
+            background: #fefefe;
+            padding: 1.6rem 1.8rem;
+            border-radius: 16px 18px 17px 15px;
+            border: 1.5px solid rgba(0, 0, 0, 0.06);
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                        box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                        border-color 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: visible;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.1rem;
+            box-shadow: 
+                0 3px 10px rgba(0, 0, 0, 0.04),
+                0 6px 20px rgba(0, 0, 0, 0.02),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transform: rotate(-0.2deg);
+            will-change: transform, box-shadow;
+        }
+
+        .method-list li:nth-child(1) {
+            transform: rotate(0.15deg);
+        }
+
+        .method-list li:nth-child(2) {
+            transform: rotate(-0.25deg);
+        }
+
+        .method-list li:nth-child(3) {
+            transform: rotate(0.2deg);
+        }
+
+        .method-list li::before {
+            content: '🕌';
+            font-size: 1.5rem;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            z-index: 2;
+            position: relative;
+        }
+
+        .method-list li:nth-child(2)::before {
+            content: '🎨';
+        }
+
+        .method-list li:nth-child(3)::before {
+            content: '⚖️';
+        }
+
+        .method-list li:hover::before {
+            transform: scale(1.15) rotate(8deg);
+        }
+
+        .method-list li::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(139, 127, 200, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(230, 168, 92, 0.08) 0%, transparent 50%);
+            border-radius: 16px 18px 17px 15px;
+            opacity: 0;
+            transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .method-list li:hover::after {
+            opacity: 1;
+        }
+
+        .method-list li:hover {
+            transform: translateY(-3px) rotate(0deg) scale(1.01);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.08),
+                0 15px 50px rgba(0, 0, 0, 0.06),
+                0 3px 8px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .method-list li .method-content {
+            flex: 1;
+        }
+
+        .method-list li .method-title {
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 0.6rem;
+            font-size: 1.15rem;
+            letter-spacing: -0.2px;
+            line-height: 1.3;
+        }
+
+        .method-list li .method-description {
+            color: #2d3748;
+            line-height: 1.8;
+            font-size: 0.96rem;
+            letter-spacing: 0.02px;
+        }
+
+        /* Image Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: modalZoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes modalZoomIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .image-modal-content #modalImageContainer {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-modal img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .image-modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .image-modal-title {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            white-space: nowrap;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .back-to-top.visible {
+            display: flex;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--text-dark) 0%, #111827 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.5), transparent);
+        }
+
+        footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                background: rgba(26, 77, 110, 0.98);
+                backdrop-filter: blur(20px);
+                width: 100%;
+                flex-direction: column;
+                padding: 2rem;
+                transition: left 0.3s ease;
+                box-shadow: var(--shadow-lg);
+                gap: 1.5rem;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 4rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .sunan-header {
+                padding: 2rem 1.5rem;
+            }
+
+            .sunan-header h2 {
+                font-size: 2rem;
+            }
+
+            .sunan-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .sunan-image-wrapper {
+                height: 300px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .content-section {
+                padding: 1.8rem 1.5rem;
+                margin: 2rem 0;
+                transform: rotate(0deg);
+            }
+
+            .content-section:nth-child(even) {
+                transform: rotate(0deg);
+            }
+
+            .content-section h3 {
+                font-size: 1.4rem;
+                margin-bottom: 1.2rem;
+                padding-bottom: 0.8rem;
+            }
+
+            .content-section h3::after {
+                width: 60px;
+                height: 2.5px;
+            }
+
+            .content-section p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+            }
+
+            .location-list li::after {
+                display: none;
+            }
+
+            .image-modal-content {
+                max-width: 95%;
+                max-height: 85%;
+            }
+
+            .image-modal img {
+                max-height: 70vh;
+            }
+
+            .image-modal-close {
+                top: -40px;
+                width: 35px;
+                height: 35px;
+                font-size: 1.2rem;
+            }
+
+            .image-modal-title {
+                bottom: -50px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-sans text-slate-800 dark:text-slate-200">
-    <!-- Sidebar Overlay -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
-    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-        <div class="layout-container flex h-full grow flex-col">
-            <header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 px-4 sm:px-10 py-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50">
-                <div class="flex items-center gap-3 text-slate-900 dark:text-white">
-                    <div class="h-8 w-8 text-primary animate-float">
-                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
-                        </svg>
-                    </div>
-                    <h2 class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Jejak Sunan</h2>
-                </div>
-
-                <!-- Desktop Navigation -->
-                <nav class="hidden items-center gap-8 md:flex">
-                    <a class="nav-link text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-all duration-300 relative" href="#biografi" onclick="scrollToSection('biografi')">Biografi</a>
-                    <a class="nav-link text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-all duration-300 relative" href="#ajaran" onclick="scrollToSection('ajaran')">Perjalanan</a>
-                    <a class="nav-link text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-all duration-300 relative" href="#galeri" onclick="scrollToSection('galeri')">Galeri</a>
-                    <a class="nav-link text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-all duration-300 relative" href="#karya" onclick="scrollToSection('karya')">Tempat Dakwah</a>
-                </nav>
-
-                <div class="flex items-center gap-2">
-                    <!-- Mobile Menu Button -->
-                    <button onclick="toggleSidebar()" class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-primary text-white md:hidden hover:bg-primary/90 transition-all duration-300">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </header>
-
-            <main class="flex-1 px-4 sm:px-6 lg:px-8 xl:px-20 py-10 pt-20">
-                <div class="mx-auto max-w-6xl">
-                    <!-- Hero Section -->
-                    <section id="beranda" class="relative flex min-h-[500px] flex-col items-center justify-center gap-8 rounded-2xl bg-cover bg-center p-8 text-center text-white shadow-2xl animate-fade-in" style='background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%), url("gambar/hero-section-image.png");'>
-                        <div class="animate-slide-up text-center">
-                            <h1 class="text-4xl font-bold leading-tight tracking-tight md:text-6xl lg:text-7xl bg-gradient-to-r from-white via-amber-100 to-white bg-clip-text text-transparent mb-6">
-                                Menelusuri Jejak Sunan Kalijaga
-                            </h1>
-                            <p class="max-w-4xl mx-auto text-lg font-normal leading-relaxed text-slate-200 md:text-xl mb-8">
-                                Temukan kisah inspiratif, ajaran bijak, dan karya seni Sunan Kalijaga yang abadi. Mari bersama-sama menggali kearifan lokal dan nilai-nilai luhur yang beliau wariskan untuk Nusantara.
-                            </p>
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row gap-4 animate-slide-up">
-                            <button onclick="scrollToSection('biografi')" class="group flex h-14 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-primary px-8 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-primary/25">
-                                <i class="fas fa-book mr-2 group-hover:animate-pulse"></i>
-                                <span>Mulai Jelajahi</span>
-                            </button>
-                            <button onclick="openModal('videoModal')" class="group flex h-14 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-white/20 backdrop-blur-sm px-8 text-lg font-semibold text-white border border-white/30 shadow-lg transition-all duration-300 hover:bg-white/30 hover:scale-105">
-                                <i class="fas fa-play mr-2 group-hover:animate-pulse"></i>
-                                <span>Tonton Video</span>
-                            </button>
-                        </div>
-
-                        <!-- Scroll Indicator -->
-                        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                            <i class="fas fa-chevron-down text-white/70 text-2xl"></i>
-                        </div>
-                    </section>
-
-                    <!-- Interactive Tabs Section -->
-                    <section id="biografi" class="py-20">
-                        <div class="text-center mb-12">
-                            <h2 class="text-4xl font-bold text-slate-900 dark:text-white mb-4 animate-slide-up">Jelajahi Kisah Sunan Kalijaga</h2>
-                            <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto animate-slide-up">
-                                Pilih kategori untuk mengeksplorasi berbagai aspek kehidupan dan ajaran Sunan Kalijaga
-                            </p>
-                        </div>
-
-                        <!-- Tab Navigation -->
-                        <div class="flex flex-wrap justify-center mb-12 animate-slide-up">
-                            <button onclick="showTab('sejarah')" class="tab-btn active flex items-center gap-2 px-6 py-3 mx-2 my-1 rounded-full bg-primary text-white shadow-lg">
-                                <i class="fas fa-history"></i>
-                                <span>Sejarah</span>
-                            </button>
-                            <button onclick="showTab('nama')" class="tab-btn flex items-center gap-2 px-6 py-3 mx-2 my-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-primary hover:text-white transition-all duration-300">
-                                <i class="fas fa-user-tag"></i>
-                                <span>Nama & Gelar</span>
-                            </button>
-                            <button onclick="showTab('dakwah')" class="tab-btn flex items-center gap-2 px-6 py-3 mx-2 my-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-primary hover:text-white transition-all duration-300">
-                                <i class="fas fa-mosque"></i>
-                                <span>Metode Dakwah</span>
-                            </button>
-                            <button onclick="showTab('karya')" class="tab-btn flex items-center gap-2 px-6 py-3 mx-2 my-1 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-primary hover:text-white transition-all duration-300">
-                                <i class="fas fa-music"></i>
-                                <span>Karya Seni</span>
-                            </button>
-                        </div>
-
-                        <!-- Tab Content -->
-                        <div id="sejarah" class="tab-content active animate-fade-in">
-                            <div class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl p-8 shadow-xl border border-amber-200/50 dark:border-amber-800/50">
-                                <div class="grid md:grid-cols-2 gap-8 items-center">
-                                    <div>
-                                        <h3 class="text-3xl font-bold text-primary mb-6 flex items-center gap-3">
-                                            <i class="fas fa-scroll text-2xl"></i>
-                                            Sejarah Singkat
-                                        </h3>
-                                        <p class="text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6">
-                                            Sunan Kalijaga adalah salah satu tokoh Wali Songo yang paling ikonik dan berpengaruh dalam penyebaran Islam di Pulau Jawa. Kisah hidupnya adalah cerminan transformasi luar biasa.
-                                        </p>
-
-                                        <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 border border-amber-200/30 dark:border-amber-800/30">
-                                            <h4 class="font-bold text-primary mb-3 flex items-center gap-2">
-                                                <i class="fas fa-birthday-cake text-amber-500"></i>
-                                                Kelahiran & Asal Usul
-                                            </h4>
-                                            <p class="text-slate-600 dark:text-slate-400 mb-4">
-                                                Lahir sekitar tahun <strong>1450 M di Tuban</strong>, beliau adalah putra dari Adipati Tuban, Tumenggung Wilatikta. Masa mudanya diwarnai oleh keprihatinan terhadap kondisi rakyat jelata.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="relative">
-                                        <div class="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center animate-float shadow-2xl" style="background-image: url('gambar/sunankalijaga.jpeg'); background-repeat: no-repeat; background-size: cover;">
-                                            <div class="text-8xl opacity-30">
-                                                
-                    </div>
-                </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="nama" class="tab-content hidden">
-                            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8 shadow-xl border border-blue-200/50 dark:border-blue-800/50">
-                                <h3 class="text-3xl font-bold text-primary mb-6 flex items-center gap-3">
-                                    <i class="fas fa-address-card text-2xl"></i>
-                                    Nama & Gelar
-                                </h3>
-                                <div class="grid md:grid-cols-3 gap-6">
-                                    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 text-center border border-blue-200/30 dark:border-blue-800/30 hover:scale-105 transition-transform duration-300">
-                                        <div class="text-4xl mb-4">
-                                            <i class="fas fa-user text-blue-500"></i>
-                                        </div>
-                                        <h4 class="font-bold text-lg mb-2">Raden Said</h4>
-                                        <p class="text-sm text-slate-600 dark:text-slate-400">Nama kecil sebagai bangsawan</p>
-                                    </div>
-                                    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 text-center border border-blue-200/30 dark:border-blue-800/30 hover:scale-105 transition-transform duration-300">
-                                        <div class="text-4xl mb-4">
-                                            <i class="fas fa-mask text-blue-500"></i>
-                                        </div>
-                                        <h4 class="font-bold text-lg mb-2">Brandal Lokajaya</h4>
-                                        <p class="text-sm text-slate-600 dark:text-slate-400">Julukan masa muda</p>
-                                    </div>
-                                    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 text-center border border-blue-200/30 dark:border-blue-800/30 hover:scale-105 transition-transform duration-300">
-                                        <div class="text-4xl mb-4">
-                                            <i class="fas fa-crown text-blue-500"></i>
-                                        </div>
-                                        <h4 class="font-bold text-lg mb-2">Sunan Kalijaga</h4>
-                                        <p class="text-sm text-slate-600 dark:text-slate-400">Nama sebagai Wali</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="dakwah" class="tab-content hidden">
-                            <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-8 shadow-xl border border-green-200/50 dark:border-green-800/50">
-                                <h3 class="text-3xl font-bold text-primary mb-6 flex items-center gap-3">
-                                    <i class="fas fa-bullhorn text-2xl"></i>
-                                    Metode Dakwah Kultural
-                                </h3>
-                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 text-center border border-green-200/30 dark:border-green-800/30 hover:scale-105 transition-all duration-300 group cursor-pointer" onclick="openModal('wayangModal')">
-                                        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                                            <i class="fas fa-dragon text-green-500"></i>
-                                        </div>
-                                        <h4 class="font-bold text-lg mb-2">Wayang Kulit</h4>
-                                        <p class="text-sm text-slate-600 dark:text-slate-400">Mengislamkan seni tradisional</p>
-                                    </div>
-                                    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 text-center border border-green-200/30 dark:border-green-800/30 hover:scale-105 transition-all duration-300 group cursor-pointer" onclick="openModal('tembangModal')">
-                                        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                                            <i class="fas fa-music text-green-500"></i>
-                                        </div>
-                                        <h4 class="font-bold text-lg mb-2">Tembang Jawa</h4>
-                                        <p class="text-sm text-slate-600 dark:text-slate-400">Karya sastra berislam</p>
-                                    </div>
-                                    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 text-center border border-green-200/30 dark:border-green-800/30 hover:scale-105 transition-all duration-300 group cursor-pointer" onclick="openModal('gamelanModal')">
-                                        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                                            <i class="fas fa-drum text-green-500"></i>
-                                        </div>
-                                        <h4 class="font-bold text-lg mb-2">Gamelan</h4>
-                                        <p class="text-sm text-slate-600 dark:text-slate-400">Musik pengiring dakwah</p>
-                                    </div>
-                                    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 text-center border border-green-200/30 dark:border-green-800/30 hover:scale-105 transition-all duration-300 group cursor-pointer" onclick="openModal('slametanModal')">
-                                        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                                            <i class="fas fa-utensils text-green-500"></i>
-                                        </div>
-                                        <h4 class="font-bold text-lg mb-2">Slametan</h4>
-                                        <p class="text-sm text-slate-600 dark:text-slate-400">Akulturasi ritual</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="karya" class="tab-content hidden">
-                            <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-8 shadow-xl border border-purple-200/50 dark:border-purple-800/50">
-                                <h3 class="text-3xl font-bold text-primary mb-6 flex items-center gap-3">
-                                    <i class="fas fa-palette text-2xl"></i>
-                                    Karya Seni & Peninggalan
-                                </h3>
-                                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 text-center border border-purple-200/30 dark:border-purple-800/30 hover:scale-105 transition-all duration-300 group cursor-pointer" onclick="openModal('sokoModal')">
-                                        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                                            <i class="fas fa-columns text-purple-500"></i>
-                                        </div>
-                                        <h4 class="font-bold text-lg mb-2">Soko Tatal</h4>
-                                        <p class="text-sm text-slate-600 dark:text-slate-400">Tiang masjid ajaib</p>
-                                    </div>
-                                    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 text-center border border-purple-200/30 dark:border-purple-800/30 hover:scale-105 transition-all duration-300 group cursor-pointer" onclick="openModal('bajuModal')">
-                                        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                                            <i class="fas fa-tshirt text-purple-500"></i>
-                                        </div>
-                                        <h4 class="font-bold text-lg mb-2">Baju Takwa</h4>
-                                        <p class="text-sm text-slate-600 dark:text-slate-400">Pakaian filosofis</p>
-                                    </div>
-                                    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 text-center border border-purple-200/30 dark:border-purple-800/30 hover:scale-105 transition-all duration-300 group cursor-pointer" onclick="openModal('lirModal')">
-                                        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                                            <i class="fas fa-scroll text-purple-500"></i>
-                                        </div>
-                                        <h4 class="font-bold text-lg mb-2">Lir-Ilir</h4>
-                                        <p class="text-sm text-slate-600 dark:text-slate-400">Tembang terkenal</p>
-                                    </div>
-                                    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 text-center border border-purple-200/30 dark:border-purple-800/30 hover:scale-105 transition-all duration-300 group cursor-pointer" onclick="openModal('slametanModal')">
-                                        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                                            <i class="fas fa-praying-hands text-purple-500"></i>
-                                        </div>
-                                        <h4 class="font-bold text-lg mb-2">Tradisi Islam</h4>
-                                        <p class="text-sm text-slate-600 dark:text-slate-400">Warisan budaya</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Interactive Timeline Section -->
-                    <section id="ajaran" class="py-20">
-                        <div class="text-center mb-12">
-                            <h2 class="text-4xl font-bold text-slate-900 dark:text-white mb-4 animate-slide-up">Perjalanan Sunan Kalijaga</h2>
-                            <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto animate-slide-up">
-                                Ikuti jejak perjalanan Sunan Kalijaga dari masa muda hingga menjadi wali penyebar Islam
-                            </p>
-                        </div>
-
-                        <div class="relative animate-slide-up">
-                            <!-- Timeline Container -->
-                            <div class="relative">
-                                <!-- Timeline Line -->
-                                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-primary via-secondary to-accent h-full hidden md:block"></div>
-
-                                <!-- Timeline Items -->
-                                <div class="space-y-12">
-                                    <!-- Item 1 -->
-                                    <div class="flex flex-col md:flex-row items-center md:justify-between relative">
-                                        <div class="md:w-5/12 md:pr-8 text-right md:text-right">
-                                            <div class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl p-6 shadow-xl border border-amber-200/50 dark:border-amber-800/50 animate-fade-in">
-                                                <div class="flex items-center justify-end mb-4">
-                                                    <h3 class="text-xl font-bold text-primary mr-3">Masa Muda</h3>
-                                                    <div class="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg">
-                                                        <i class="fas fa-child text-lg"></i>
-                                                    </div>
-                                                </div>
-                                                <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
-                                                    Lahir sebagai <strong>Raden Said</strong>, putra bangsawan dari Tuban. Masa mudanya diwarnai oleh keprihatinan terhadap penderitaan rakyat akibat kemarau panjang dan upeti yang memberatkan.
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary rounded-full border-4 border-white dark:border-slate-900 shadow-lg hidden md:block animate-pulse"></div>
-
-                                        <div class="md:w-5/12 md:pl-8"></div>
-                                    </div>
-
-                                    <!-- Item 2 -->
-                                    <div class="flex flex-col md:flex-row items-center md:justify-between relative">
-                                        <div class="md:w-5/12"></div>
-
-                                        <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-secondary rounded-full border-4 border-white dark:border-slate-900 shadow-lg hidden md:block animate-pulse"></div>
-
-                                        <div class="md:w-5/12 md:pl-8">
-                                            <div class="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-6 shadow-xl border border-red-200/50 dark:border-red-800/50 animate-fade-in">
-                                                <div class="flex items-center mb-4">
-                                                    <div class="bg-secondary text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg mr-3">
-                                                        <i class="fas fa-mask text-lg"></i>
-                                                    </div>
-                                                    <h3 class="text-xl font-bold text-primary">Brandal Lokajaya</h3>
-                                                </div>
-                                                <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
-                                                    Memilih jalan radikal sebagai <strong>"perampok budiman"</strong>. Dengan julukan <strong>Brandal Lokajaya</strong>, ia merampok orang kaya dan pejabat korup untuk membantu fakir miskin.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Item 3 -->
-                                    <div class="flex flex-col md:flex-row items-center md:justify-between relative">
-                                        <div class="md:w-5/12 md:pr-8 text-right md:text-right">
-                                            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-2xl p-6 shadow-xl border border-blue-200/50 dark:border-blue-800/50 animate-fade-in">
-                                                <div class="flex items-center justify-end mb-4">
-                                                    <h3 class="text-xl font-bold text-primary mr-3">Pertemuan Spiritual</h3>
-                                                    <div class="bg-accent text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg">
-                                                        <i class="fas fa-lightbulb text-lg"></i>
-                                                    </div>
-                                                </div>
-                                                <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
-                                                    Titik balik terjadi saat bertemu <strong>Sunan Bonang</strong>. Berniat merampok, Raden Said justru terpesona oleh kesaktian dan kebijaksanaan Sunan Bonang.
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-accent rounded-full border-4 border-white dark:border-slate-900 shadow-lg hidden md:block animate-pulse"></div>
-
-                                        <div class="md:w-5/12"></div>
-                                    </div>
-
-                                    <!-- Item 4 -->
-                                    <div class="flex flex-col md:flex-row items-center md:justify-between relative">
-                                        <div class="md:w-5/12"></div>
-
-                                        <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-green-500 rounded-full border-4 border-white dark:border-slate-900 shadow-lg hidden md:block animate-pulse"></div>
-
-                                        <div class="md:w-5/12 md:pl-8">
-                                            <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-6 shadow-xl border border-green-200/50 dark:border-green-800/50 animate-fade-in">
-                                                <div class="flex items-center mb-4">
-                                                    <div class="bg-green-500 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg mr-3">
-                                                        <i class="fas fa-mosque text-lg"></i>
-                                                    </div>
-                                                    <h3 class="text-xl font-bold text-primary">Menjadi Wali</h3>
-                                                </div>
-                                                <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
-                                                    Berganti nama menjadi <strong>Sunan Kalijaga</strong> dan menjadi salah satu Wali Songo paling berpengaruh. Mengembangkan metode dakwah kultural yang unik dan efektif.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Enhanced Gallery Section -->
-                    <section id="galeri" class="py-20">
-                        <div class="text-center mb-12">
-                            <h2 class="text-4xl font-bold text-slate-900 dark:text-white mb-4 animate-slide-up">🖼️ Galeri Sunan Kalijaga</h2>
-                            <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto animate-slide-up mb-8">
-                                Koleksi gambar dan visualisasi tentang Sunan Kalijaga dan peninggalannya
-                            </p>
-
-                            <!-- Gallery Filter Buttons -->
-                            <div class="flex flex-wrap justify-center gap-4 mb-8">
-                                <button onclick="filterGallery('all')" class="gallery-filter active px-6 py-2 rounded-full bg-primary text-white">Semua</button>
-                                <button onclick="filterGallery('masjid')" class="gallery-filter px-6 py-2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-primary hover:text-white transition-all duration-300">Masjid</button>
-                                <button onclick="filterGallery('wayang')" class="gallery-filter px-6 py-2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-primary hover:text-white transition-all duration-300">Wayang</button>
-                                <button onclick="filterGallery('tembang')" class="gallery-filter px-6 py-2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-primary hover:text-white transition-all duration-300">Tembang</button>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryContainer">
-                            <div class="gallery-item masjid overflow-hidden rounded-2xl shadow-lg group cursor-pointer" onclick="openModal('imageModal1')">
-                                <div class="aspect-[4/3] bg-cover bg-center relative transition-transform duration-300 group-hover:scale-105" style='background-image: url("gambar/masjid-agung-demak.jpg");'>
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    <div class="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <h4 class="font-bold text-lg">Masjid Agung Demak</h4>
-                                        <p class="text-sm">Peninggalan bersejarah</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="gallery-item wayang overflow-hidden rounded-2xl shadow-lg group cursor-pointer" onclick="openModal('imageModal2')">
-                                <div class="aspect-[4/3] bg-cover bg-center relative transition-transform duration-300 group-hover:scale-105" style='background-image: url("gambar/wayang.jpg");'>
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    <div class="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <h4 class="font-bold text-lg">Wayang Kulit</h4>
-                                        <p class="text-sm">Media dakwah kultural</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="gallery-item tembang overflow-hidden rounded-2xl shadow-lg group cursor-pointer" onclick="openModal('imageModal3')">
-                                <div class="aspect-[4/3] bg-cover bg-center relative transition-transform duration-300 group-hover:scale-105" style='background-image: url("gambar/tembang.jpg");'>
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    <div class="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <h4 class="font-bold text-lg">Naskah Tembang</h4>
-                                        <p class="text-sm">Karya sastra Islam</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="gallery-item masjid overflow-hidden rounded-2xl shadow-lg group cursor-pointer" onclick="openModal('imageModal4')">
-                                <div class="aspect-[4/3] bg-cover bg-center relative transition-transform duration-300 group-hover:scale-105" style='background-image: url("gambar/soko\ tatal.jpg");'>
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    <div class="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <h4 class="font-bold text-lg">Soko Tatal</h4>
-                                        <p class="text-sm">Tiang masjid legendaris</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="gallery-item wayang overflow-hidden rounded-2xl shadow-lg group cursor-pointer" onclick="openModal('imageModal5')">
-                                <div class="aspect-[4/3] bg-cover bg-center relative transition-transform duration-300 group-hover:scale-105" style='background-image: url("gambar/wayang2.jpg");'>
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    <div class="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <h4 class="font-bold text-lg">Pertunjukan Wayang</h4>
-                                        <p class="text-sm">Dakwah melalui seni</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="gallery-item tembang overflow-hidden rounded-2xl shadow-lg group cursor-pointer" onclick="openModal('imageModal6')">
-                                <div class="aspect-[4/3] bg-cover bg-center relative transition-transform duration-300 group-hover:scale-105" style='background-image: url("gambar/gamelan.jpg");'>
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                    <div class="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <h4 class="font-bold text-lg">Gamelan Jawa</h4>
-                                        <p class="text-sm">Musik pengiring dakwah</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Interactive Map Section -->
-                    <section id="karya" class="py-20">
-                        <div class="text-center mb-12">
-                            <h2 class="text-4xl font-bold text-slate-900 dark:text-white mb-4 animate-slide-up">🗺️ Tempat Dakwah</h2>
-                            <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto animate-slide-up">
-                                Wilayah dakwah Sunan Kalijaga yang sangat luas mencakup hampir seluruh Pulau Jawa
-                            </p>
-                        </div>
-
-                        <div class="grid md:grid-cols-3 gap-8 animate-slide-up">
-                            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-8 shadow-xl border border-blue-200/50 dark:border-blue-800/50 text-center hover:scale-105 transition-all duration-300 group cursor-pointer" onclick="openModal('cirebonModal')">
-                                <div class="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fas fa-mosque text-blue-500"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-primary mb-4">Cirebon</h3>
-                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    Basis dakwah awal di <strong>Desa Kalijaga, Cirebon</strong>. Tempat ia mulai membangun komunitas dan menyebarkan ajaran Islam.
-                                </p>
-                            </div>
-
-                            <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-8 shadow-xl border border-green-200/50 dark:border-green-800/50 text-center hover:scale-105 transition-all duration-300 group cursor-pointer" onclick="openModal('demakModal')">
-                                <div class="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300 relative">
-                                    <i class="fas fa-mosque text-green-500"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-primary mb-4 flex items-center justify-center gap-2">
-                                    <i class="fas fa-crown text-green-500"></i>
-                                    Demak
-                                </h3>
-                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    Penasihat penting bagi <strong>Kesultanan Demak</strong>, kerajaan Islam pertama di Jawa. Arsitek utama Masjid Agung Demak.
-                                </p>
-                            </div>
-
-                            <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-8 shadow-xl border border-purple-200/50 dark:border-purple-800/50 text-center hover:scale-105 transition-all duration-300 group cursor-pointer" onclick="openModal('tubanModal')">
-                                <div class="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fas fa-home text-purple-500"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-primary mb-4">Tuban</h3>
-                                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    Tempat kelahirannya. <strong>Tuban</strong> dan wilayah sekitarnya menjadi area alami bagi dakwahnya sebagai putra daerah.
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-            </main>
-
-            <!-- Enhanced Sidebar for Mobile -->
-            <aside class="sidebar" id="mobileSidebar">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-xl font-bold text-primary">🗂️ Menu</h3>
-                    <button onclick="toggleSidebar()" class="text-slate-500 hover:text-primary">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-
-                <nav class="mb-8">
-                    <ul class="space-y-3">
-                        <li><a href="#biografi" onclick="toggleSidebar(); scrollToSection('biografi')" class="sidebar-link flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 transition-all duration-300">
-                            <i class="fas fa-user"></i>
-                            <span>Biografi</span>
-                        </a></li>
-                        <li><a href="#ajaran" onclick="toggleSidebar(); scrollToSection('ajaran')" class="sidebar-link flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 transition-all duration-300">
-                            <i class="fas fa-route"></i>
-                            <span>Perjalanan</span>
-                        </a></li>
-                        <li><a href="#galeri" onclick="toggleSidebar(); scrollToSection('galeri')" class="sidebar-link flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 transition-all duration-300">
-                            <i class="fas fa-images"></i>
-                            <span>Galeri</span>
-                        </a></li>
-                        <li><a href="#karya" onclick="toggleSidebar(); scrollToSection('karya')" class="sidebar-link flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 transition-all duration-300">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Tempat Dakwah</span>
-                        </a></li>
-                    </ul>
-                </nav>
-
-                <div class="border-t pt-6">
-                    <h4 class="font-bold text-primary mb-4 flex items-center gap-2">
-                        <i class="fas fa-star"></i>
-                        Fitur Interaktif
-                    </h4>
-                    <div class="space-y-3">
-                        <button onclick="openModal('videoModal'); toggleSidebar()" class="w-full flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg transition-all duration-300">
-                            <i class="fas fa-play"></i>
-                            <span>Video</span>
-                        </button>
-                        <button onclick="startQuiz(); toggleSidebar()" class="w-full flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:shadow-lg transition-all duration-300">
-                            <i class="fas fa-brain"></i>
-                            <span>Kuis Pengetahuan</span>
-                        </button>
-                        <button onclick="openModal('temuModal'); toggleSidebar()" class="w-full flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-lg transition-all duration-300">
-                            <i class="fas fa-music"></i>
-                            <span>Dengar Tembang</span>
-                        </button>
-                    </div>
-                </div>
-            </aside>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Mengenal Sunan Giri & Sunan Bonang</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#sunan-giri">Sunan Giri</a></li>
+                    <li><a href="#sunan-bonang">Sunan Bonang</a></li>
+                </ul>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <!-- Enhanced Footer -->
-    <footer id="kontak" class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-16">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-20">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
-                    <div class="animate-fade-in">
-                        <h4 class="font-bold text-lg mb-6 flex items-center gap-2">
-                            <i class="fas fa-link text-primary"></i>
-                            Quick Links
-                        </h4>
-                        <ul class="space-y-3">
-                            <li><a href="#beranda" class="text-slate-300 hover:text-primary transition-colors duration-300 flex items-center gap-2">
-                                <i class="fas fa-chevron-right text-xs"></i>
-                                Beranda
-                            </a></li>
-                            <li><a href="#biografi" class="text-slate-300 hover:text-primary transition-colors duration-300 flex items-center gap-2">
-                                <i class="fas fa-chevron-right text-xs"></i>
-                                Biografi
-                            </a></li>
-                            <li><a href="#ajaran" class="text-slate-300 hover:text-primary transition-colors duration-300 flex items-center gap-2">
-                                <i class="fas fa-chevron-right text-xs"></i>
-                                Ajaran
-                            </a></li>
-                            <li><a href="#galeri" class="text-slate-300 hover:text-primary transition-colors duration-300 flex items-center gap-2">
-                                <i class="fas fa-chevron-right text-xs"></i>
-                                Galeri
-                            </a></li>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Sejarah & Dakwah Wali Songo</h1>
+            <p>Mengenal lebih dekat Sunan Giri dan Sunan Bonang</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Sunan Giri Section -->
+            <section class="sunan-section fade-in" id="sunan-giri">
+                <div class="sunan-header">
+                    <h2>Sunan Giri</h2>
+                    <p class="subtitle">Nama Asli: Muhammad Ainul Yaqin</p>
+                </div>
+                <div class="sunan-content">
+                    <!-- Image -->
+                    <div class="sunan-image-wrapper">
+                        <img src="img/sunan_giri.png" alt="Sunan Giri" class="sunan-image">
+                    </div>
+
+                    <!-- Info Cards -->
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>📖 Nama</h3>
+                            <p><strong>Sunan:</strong> Sunan Giri<br>
+                            <strong>Nama Asli:</strong> Muhammad Ainul Yaqin<br>
+                            <strong>Nama Lain:</strong> Raden Paku</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>⏳ Tahun Wafat</h3>
+                            <p><strong>Wafat:</strong> Sekitar 1506 M<br>
+                            <strong>Tempat Makam:</strong> Gresik, Jawa Timur</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>🏆 Pencapaian</h3>
+                            <p>Mendirikan Pesantren Giri, Kerajaan Giri Kedaton, dan menciptakan permainan bernuansa Islami seperti Ilir-ilir dan Cublak-Cublak Suweng.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sejarah Section -->
+                    <div class="content-section">
+                        <h3>📜 Sejarah Singkat</h3>
+                        <p>Sunan Giri, yang bernama asli Muhammad Ainul Yaqin atau dikenal juga sebagai Raden Paku, adalah salah satu dari Wali Songo yang berperan penting dalam penyebaran agama Islam di Pulau Jawa. Ia merupakan putra dari Maulana Ishak dari Samudra Pasai dan Dewi Sekardadu, putri Raja Blambangan. Sejak kecil, Muhammad Ainul Yaqin dikenal cerdas dan tekun menuntut ilmu. Ia menimba ilmu agama di Samudra Pasai bersama sahabatnya, Raden Makhdum Ibrahim (Sunan Bonang). Setelah kembali ke Jawa, ia mendirikan Pesantren Giri di Gresik yang menjadi pusat pendidikan Islam terkemuka dan melahirkan banyak ulama besar. Melalui pendidikan, dakwah yang lembut, serta permainan rakyat bernilai Islam, Sunan Giri berhasil menyebarkan ajaran Islam hingga ke luar Jawa. Ia juga mendirikan Kerajaan Giri Kedaton dan dihormati sebagai pemimpin spiritual yang bijak. Sunan Giri wafat sekitar tahun 1506 M dan dimakamkan di Gresik, Jawa Timur.</p>
+                    </div>
+
+                    <!-- Metode Dakwah Section -->
+                    <div class="content-section">
+                        <h3>🕌 Metode Dakwah</h3>
+                        <ul class="method-list">
+                            <li>
+                                <div class="method-content">
+                                    <div class="method-title">Pendidikan</div>
+                                    <div class="method-description">Mendirikan pesantren Giri Kedaton yang menjadi pusat pendidikan Islam terkemuka dan melahirkan banyak ulama besar. Melalui pendidikan, Sunan Giri berhasil menyebarkan ajaran Islam dengan cara yang sistematis dan terstruktur.</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="method-content">
+                                    <div class="method-title">Budaya</div>
+                                    <div class="method-description">Menciptakan permainan dan lagu bernuansa Islami seperti Ilir-ilir dan Cublak-Cublak Suweng. Melalui pendekatan budaya yang menyenangkan, dakwah menjadi lebih mudah diterima oleh masyarakat Jawa.</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="method-content">
+                                    <div class="method-title">Politik</div>
+                                    <div class="method-description">Memanfaatkan pengaruhnya sebagai pemimpin di Giri Kedaton untuk menyebarkan Islam. Mendirikan Kerajaan Giri Kedaton dan dihormati sebagai pemimpin spiritual yang bijak, sehingga dakwah dapat tersebar hingga ke luar Jawa.</div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
 
-                    <div class="animate-fade-in">
-                        <h3 class="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                            Jejak Sunan
-                        </h3>
-                        <p class="text-slate-300 leading-relaxed mb-6">
-                            Website edukasi tentang Sunan Kalijaga, wali penyebar Islam Nusantara dengan pendekatan dakwah kultural yang unik dan berpengaruh.
-                        </p>
+                    <!-- Tempat Dakwah Section -->
+                    <div class="content-section">
+                        <h3>📍 Tempat Dakwah</h3>
+                        <ul class="location-list">
+                            <li data-image="img/tempat-dakwah-sunan-giri/Giri-Kedaton.jpeg" data-location="Gresik, Jawa Timur">
+                                Gresik, Jawa Timur
+                                <span class="location-hint">👆 Klik untuk lihat gambar</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
+            <!-- Sunan Bonang Section -->
+            <section class="sunan-section fade-in" id="sunan-bonang">
+                <div class="sunan-header">
+                    <h2>Sunan Bonang</h2>
+                    <p class="subtitle">Nama Asli: Raden Maulana Makdum Ibrahim</p>
+                </div>
+                <div class="sunan-content">
+                    <!-- Image -->
+                    <div class="sunan-image-wrapper">
+                        <img src="img/Sunan_bonang.jpg" alt="Sunan Bonang" class="sunan-image">
                     </div>
 
+                    <!-- Info Cards -->
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>📖 Nama</h3>
+                            <p><strong>Sunan:</strong> Sunan Bonang<br>
+                            <strong>Nama Asli:</strong> Raden Maulana Makdum Ibrahim<br>
+                            <strong>Orang Tua:</strong> Sunan Ampel & Nyai Ageng Manila</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>⏳ Tahun Wafat</h3>
+                            <p><strong>Wafat:</strong> Sekitar 1525 M<br>
+                            <strong>Tempat Makam:</strong> Tuban, Jawa Timur</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>🎵 Karya Terkenal</h3>
+                            <p>Menciptakan tembang "Tombo Ati" yang masih terkenal hingga sekarang, serta menggunakan gamelan dan tembang macapat sebagai media dakwah.</p>
+                        </div>
+                    </div>
 
+                    <!-- Sejarah Section -->
+                    <div class="content-section">
+                        <h3>📜 Sejarah Singkat</h3>
+                        <p>Sunan Bonang, yang memiliki nama asli Raden Makhdum Ibrahim, adalah salah satu dari Wali Songo yang berperan besar dalam penyebaran agama Islam di Jawa. Ia merupakan putra Sunan Ampel dan Nyai Ageng Manila dari Tuban. Sejak muda, Raden Makhdum Ibrahim dikenal sangat cerdas dan memiliki pengetahuan luas tentang agama Islam. Ia pernah menimba ilmu ke Samudra Pasai bersama sahabatnya, Raden Paku (Sunan Giri). Setelah kembali ke Jawa, Sunan Bonang berdakwah di daerah Tuban dan Lasem dengan cara yang lembut dan mudah diterima masyarakat. Ia menggunakan kesenian, seperti gamelan dan tembang, sebagai media dakwah, salah satunya tembang "Tombo Ati" yang masih terkenal hingga sekarang. Melalui metode dakwah yang kreatif, ia berhasil menarik banyak orang untuk memeluk Islam. Sunan Bonang wafat sekitar tahun 1525 M dan dimakamkan di Tuban, Jawa Timur, serta dikenang sebagai ulama yang bijak dan seniman religius yang berpengaruh.</p>
+                    </div>
 
+                    <!-- Metode Dakwah Section -->
+                    <div class="content-section">
+                        <h3>🕌 Metode Dakwah</h3>
+                        <ul class="method-list">
+                            <li>
+                                <div class="method-content">
+                                    <div class="method-title">Gamelan</div>
+                                    <div class="method-description">Menggunakan gamelan sebagai media dakwah untuk menarik perhatian masyarakat. Melalui musik yang indah, ajaran Islam disampaikan dengan cara yang menghibur dan mudah diterima.</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="method-content">
+                                    <div class="method-title">Tembang Macapat</div>
+                                    <div class="method-description">Menciptakan tembang macapat yang berisi ajaran Islam, salah satunya tembang "Tombo Ati" yang masih terkenal hingga sekarang. Tembang ini menjadi cara yang efektif untuk menyampaikan nilai-nilai Islam melalui seni sastra Jawa.</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="method-content">
+                                    <div class="method-title">Wayang</div>
+                                    <div class="method-description">Memanfaatkan wayang sebagai media dakwah yang sudah dikenal masyarakat Jawa. Melalui pertunjukan wayang, ajaran Islam disampaikan dengan cara yang familiar dan menghibur.</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
 
+                    <!-- Tempat Dakwah Section -->
+                    <div class="content-section">
+                        <h3>📍 Tempat Dakwah</h3>
+                        <ul class="location-list">
+                            <li data-image="img/tempat-dakwah-sunan-boneng/kediri.jpeg" data-location="Kediri">
+                                Kediri
+                                <span class="location-hint">👆 Klik untuk lihat gambar</span>
+                            </li>
+                            <li data-image="img/tempat-dakwah-sunan-boneng/tuban.jpg" data-location="Tuban">
+                                Tuban
+                                <span class="location-hint">👆 Klik untuk lihat gambar</span>
+                            </li>
+                            <li data-image="img/tempat-dakwah-sunan-boneng/demak.jpeg" data-location="Demak">
+                                Demak
+                                <span class="location-hint">👆 Klik untuk lihat gambar</span>
+                            </li>
+                            <li data-image="img/tempat-dakwah-sunan-boneng/lasem.jpg" data-location="Lasem">
+                                Lasem
+                                <span class="location-hint">👆 Klik untuk lihat gambar</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+            </section>
+        </div>
+    </main>
 
-                <div class="border-t border-slate-700 pt-8 text-center">
-                    <p class="text-slate-400">
-                        &copy; 2024 Kisah Sunan Kalijaga. Dibuat dengan
-                        <i class="fas fa-heart text-red-500 mx-1"></i>
-                        untuk melestarikan warisan budaya Islam Nusantara.
-                    </p>
-                </div>
-            </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 - Kelompok 2 X RPL 1</p>
+            <p>Mengenal Sunan Giri & Sunan Bonang</p>
         </div>
     </footer>
 
-    <!-- Modals -->
-    <!-- Video Modal -->
-    <div id="videoModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="text-2xl font-bold text-primary flex items-center gap-2">
-                    <i class="fas fa-play-circle"></i>
-                    Video
-                </h3>
-                <button onclick="closeModal('videoModal')" class="text-slate-500 hover:text-primary">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="aspect-video bg-black rounded-lg overflow-hidden">
-                    <!-- Opsi 1: Video dari YouTube (Embed) -->
-                    <iframe
-                        width="100%"
-                        height="100%"
-                        src="https://www.youtube.com/embed/htHPvUC5H0M"
-                        title="Dokumenter Sunan Kalijaga"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen
-                        class="w-full h-full">
-                    </iframe>
-                </div>
-
-                <!-- Deskripsi video -->
-                <div class="mt-6 bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-primary">
-                    <h4 class="font-bold text-primary mb-2 flex items-center gap-2">
-                        <i class="fas fa-info-circle"></i>
-                        Deskripsi Video
-                    </h4>
-                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
-                        Video animasi ini menceritakan dakwah Sunan Kalijaga menggunakan Wayang Kulit. Awalnya ditentang oleh Sunan Giri karena bentuknya, Sunan Kalijaga memodifikasi wayang tersebut. Ia kemudian menggelar pertunjukan dengan lakon "Nawa Ruci" dan sebagai ganti bayaran, penonton hanya diminta mengucapkan dua kalimat Syahadat, metode yang efektif menyebarkan Islam di Jawa.
-                    </p>
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content">
+            <button class="image-modal-close" onclick="closeImageModal()" aria-label="Tutup">×</button>
+            <div id="modalImageContainer" style="position: relative; display: flex; align-items: center; justify-content: center; min-height: 300px;">
+                <img id="modalImage" src="" alt="Gambar Tempat Dakwah" style="display: none;">
+                <div id="modalPlaceholder" style="display: none; text-align: center; color: #6b7280; padding: 2rem; background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%); border-radius: 15px; max-width: 500px;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🖼️</div>
+                    <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">Gambar belum tersedia</div>
+                    <div style="font-size: 0.9rem;">Silakan masukkan gambar di data-image attribute</div>
                 </div>
             </div>
+            <div class="image-modal-title" id="modalTitle"></div>
         </div>
     </div>
 
-    <!-- Wayang Modal -->
-    <div id="wayangModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="text-2xl font-bold text-primary flex items-center gap-2">
-                    <i class="fas fa-dragon"></i>
-                    Wayang Kulit
-                </h3>
-                <button onclick="closeModal('wayangModal')" class="text-slate-500 hover:text-primary">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJNVH3Jvdic8BX6FDuzVOQQSXSL5xbAuBhhzF5gGOT5StN8yO_wKoBj1MGahrABjuKYM_8Q7hjnnDJGEK6TI9E2vegwglAJzy9l0heh5Cb4RbZa9GKwBwXC2J-K2TJXW095bZuBQtOVYRTSMfym9ilaDOuPTOwA4DbzSLZycWTRqn9c6mCQ9Eo9gjS481kxzt8sOtS0oBci2o56BakSHwdaZhJKz7nep_Dpqkx4Myvz1iGcVF7E8LZAL9r3d_zgbZX2hONilz96t4" alt="Wayang Kulit" class="w-full rounded-lg">
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-3">Media Dakwah Kultural</h4>
-                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                            Sunan Kalijaga menggunakan wayang kulit sebagai media dakwah yang efektif. Beliau memodifikasi cerita wayang dengan menyisipkan nilai-nilai Islam.
-                        </p>
-                        <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-primary">
-                            <p class="text-sm italic">
-                                "Seni wayang bukan untuk dihapuskan, tetapi untuk disempurnakan dengan nilai-nilai Islam"
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tembang Modal -->
-    <div id="tembangModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="text-2xl font-bold text-primary flex items-center gap-2">
-                    <i class="fas fa-music"></i>
-                    Tembang Jawa
-                </h3>
-                <button onclick="closeModal('tembangModal')" class="text-slate-500 hover:text-primary">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg p-6">
-                    <h4 class="font-bold text-xl mb-4 text-center">Lir-Ilir</h4>
-                    <div class="bg-white dark:bg-slate-800 rounded-lg p-4 font-mono text-center mb-4">
-                        <p class="mb-2"><em>Lir ilir, lir ilir tandure wus sumilir</em></p>
-                        <p class="mb-2"><em>Tak iyo lirmu, kanggo tumaritis</em></p>
-                        <p><em>Ing tengahing segoro</em></p>
-                    </div>
-                    <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
-                        Tembang Lir-Ilir adalah salah satu karya sastra Sunan Kalijaga yang paling terkenal. Menggunakan bahasa Jawa yang indah dengan makna filosofis yang mendalam tentang perjalanan spiritual manusia.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Additional Modals (similar structure) -->
-    <div id="gamelanModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="text-2xl font-bold text-primary">Gamelan Jawa</h3>
-                <button onclick="closeModal('gamelanModal')" class="text-slate-500 hover:text-primary">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Gamelan digunakan sebagai musik pengiring dakwah...</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="slametanModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="text-2xl font-bold text-primary">Tradisi Slametan</h3>
-                <button onclick="closeModal('slametanModal')" class="text-slate-500 hover:text-primary">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Akulturasi ritual Jawa menjadi tradisi Islam...</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Image Modals -->
-    <div id="imageModal1" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="text-2xl font-bold text-primary">Masjid Agung Demak</h3>
-                <button onclick="closeModal('imageModal1')" class="text-slate-500 hover:text-primary">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfsLS9izDlVtd5VQT-dB4RtrSrlSAnszjr-dXaqObNJ1agy9vSX4NDIo_XqQs1RF_j2OPB9os9iyq8XqkfNulZAtCDcjDbAcNDJ6yGAmvBlpsujQuaAo3LODQwVBjQi-jJyndPYY95e_yklhg2WrzNGJJvI6dj-V6EiROuD-SAgT0dJL9nH98Lwal0iuZk3p-mqc4oZs9doEP2YCzxyzx9A-jFzDHPfbAj1K_CeZ8f4qGqP99dDfs1OcZo4Es3bimM0G-ess4yoRs" alt="Masjid Agung Demak" class="w-full rounded-lg mb-4">
-                <p>Masjid Agung Demak adalah salah satu peninggalan bersejarah Sunan Kalijaga...</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add more image modals similarly -->
-
-    <!-- Search Modal -->
-    <div id="searchModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="text-2xl font-bold text-primary flex items-center gap-2">
-                    <i class="fas fa-search"></i>
-                    Pencarian
-                </h3>
-                <button onclick="closeModal('searchModal')" class="text-slate-500 hover:text-primary">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="relative">
-                    <input type="text" placeholder="Cari informasi tentang Sunan Kalijaga..." class="w-full pl-12 pr-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-primary focus:border-transparent">
-                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Profile Modal -->
-    <div id="profileModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="text-2xl font-bold text-primary flex items-center gap-2">
-                    <i class="fas fa-user"></i>
-                    Profil Pengguna
-                </h3>
-                <button onclick="closeModal('profileModal')" class="text-slate-500 hover:text-primary">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-user text-2xl text-white"></i>
-                    </div>
-                    <h4 class="font-bold text-lg mb-2">Pengunjung</h4>
-                    <p class="text-slate-600 dark:text-slate-400">Selamat datang di website Jejak Sunan Kalijaga</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Kembali ke atas">↑</button>
 
     <script>
-        // Modal styles
-        const modalStyle = `
-            .modal {
-                display: none;
-                position: fixed;
-                z-index: 1001;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0,0,0,0.8);
-                animation: fadeIn 0.3s ease;
-            }
-            .modal-content {
-                background-color: white;
-                margin: 5% auto;
-                padding: 0;
-                border-radius: 1rem;
-                width: 90%;
-                max-width: 800px;
-                max-height: 90vh;
-                overflow-y: auto;
-                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-                animation: slideUp 0.3s ease;
-            }
-            .modal-header {
-                padding: 1.5rem;
-                border-bottom: 1px solid #e5e7eb;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
-                color: white;
-                border-radius: 1rem 1rem 0 0;
-            }
-            .modal-body {
-                padding: 2rem;
-            }
-            .close {
-                color: #aaa;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-                cursor: pointer;
-            }
-            .close:hover {
-                color: #fff;
-            }
-        `;
-
-        // Add modal styles to head
-        const styleSheet = document.createElement("style");
-        styleSheet.textContent = modalStyle;
-        document.head.appendChild(styleSheet);
-
-        // Quiz data
-        const quizQuestions = [
-            {
-                question: "Siapa nama kecil Sunan Kalijaga?",
-                options: ["Raden Said", "Raden Patah", "Raden Wijaya", "Raden Gatutkaca"],
-                correct: 0,
-                explanation: "Nama kecil Sunan Kalijaga adalah Raden Said, putra dari Adipati Tuban."
-            },
-            {
-                question: "Apa julukan Sunan Kalijaga saat menjadi perampok?",
-                options: ["Brandal Lokajaya", "Singa Barong", "Macan Putih", "Elang Jawa"],
-                correct: 0,
-                explanation: "Ia dikenal sebagai Brandal Lokajaya saat menjadi perampok budiman."
-            },
-            {
-                question: "Tembang apa yang paling terkenal dari Sunan Kalijaga?",
-                options: ["Lir-Ilir", "Sinom", "Pangkur", "Asmaradana"],
-                correct: 0,
-                explanation: "Tembang Lir-Ilir adalah ciptaan Sunan Kalijaga yang paling terkenal."
-            },
-            {
-                question: "Di mana Sunan Kalijaga dimakamkan?",
-                options: ["Kadilangu, Demak", "Tuban", "Cirebon", "Gresik"],
-                correct: 0,
-                explanation: "Sunan Kalijaga dimakamkan di Kadilangu, Demak."
-            },
-            {
-                question: "Apa nama tiang masjid yang menjadi peninggalan Sunan Kalijaga?",
-                options: ["Soko Tatal", "Soko Guru", "Soko Majapahit", "Soko Demak"],
-                correct: 0,
-                explanation: "Soko Tatal adalah tiang masjid di Masjid Agung Demak yang menjadi peninggalannya."
-            }
-        ];
-
-        let currentQuestion = 0;
-        let score = 0;
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Website Jejak Sunan Kalijaga dimuat');
-
-            // Add smooth scrolling for navigation links
-            const links = document.querySelectorAll('a[href^="#"]');
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Add intersection observer for animations
-            observeElements();
-
-            // Add navigation link active state
-            addActiveNavigation();
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
         });
 
-        // Tab functionality
-        function showTab(tabName) {
-            // Hide all tab contents
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => {
-                content.classList.add('hidden');
-                content.classList.remove('active');
+        // Header Scroll Effect
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
+        }
 
-            // Remove active class from all tab buttons
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            tabButtons.forEach(button => {
-                button.classList.remove('active', 'bg-primary', 'text-white');
-                button.classList.add('bg-slate-200', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                navLinks.classList.remove('active');
             });
+        });
 
-            // Show selected tab content
-            const selectedContent = document.getElementById(tabName);
-            if (selectedContent) {
-                selectedContent.classList.remove('hidden');
-                selectedContent.classList.add('active');
-            }
-
-            // Add active class to clicked button
-            const activeButton = Array.from(tabButtons).find(button => button.onclick.toString().includes(`'${tabName}'`));
-            if (activeButton) {
-                activeButton.classList.add('active', 'bg-primary', 'text-white');
-                activeButton.classList.remove('bg-slate-200', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-            }
-        }
-
-        // Modal functionality
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
-        }
+        });
 
-        // Sidebar functionality
-        function toggleSidebar() {
-            const sidebar = document.getElementById('mobileSidebar');
-            const overlay = document.getElementById('sidebarOverlay');
+        // Enhanced Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-            if (sidebar && overlay) {
-                sidebar.classList.toggle('active');
-                overlay.classList.toggle('active');
-            }
-        }
-
-        // Search functionality
-        function toggleSearch() {
-            openModal('searchModal');
-        }
-
-        // Profile functionality
-        function toggleProfile() {
-            openModal('profileModal');
-        }
-
-        // Scroll to section functionality
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
-
-        // Gallery filtering functionality
-        function filterGallery(category) {
-            const items = document.querySelectorAll('.gallery-item');
-            const buttons = document.querySelectorAll('.gallery-filter');
-
-            // Update button states
-            buttons.forEach(button => {
-                button.classList.remove('active', 'bg-primary', 'text-white');
-                button.classList.add('bg-slate-200', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-            });
-
-            // Add active state to clicked button
-            const activeButton = Array.from(buttons).find(button => button.onclick.toString().includes(`'${category}'`));
-            if (activeButton) {
-                activeButton.classList.add('active', 'bg-primary', 'text-white');
-                activeButton.classList.remove('bg-slate-200', 'dark:bg-slate-700', 'text-slate-700', 'dark:text-slate-300');
-            }
-
-            // Filter gallery items
-            items.forEach(item => {
-                if (category === 'all' || item.classList.contains(category)) {
-                    item.style.display = 'block';
-                    item.style.animation = 'fadeIn 0.5s ease';
-                } else {
-                    item.style.display = 'none';
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
                 }
             });
-        }
+        }, observerOptions);
 
-        // Intersection Observer for animations
-        function observeElements() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-fade-in');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
+        // Observe all sunan sections
+        document.querySelectorAll('.sunan-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(section);
+        });
 
-            // Observe elements that should animate
-            const animateElements = document.querySelectorAll('.tab-content, .gallery-item, footer div');
-            animateElements.forEach(el => observer.observe(el));
-        }
+        // Observe info cards and content sections
+        document.querySelectorAll('.info-card, .content-section').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(element);
+        });
 
-        // Active navigation state
-        function addActiveNavigation() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            window.addEventListener('scroll', () => {
-                let current = '';
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 100;
-                    if (window.pageYOffset >= sectionTop) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('text-primary', 'font-semibold');
-                    if (link.getAttribute('href').substring(1) === current) {
-                        link.classList.add('text-primary', 'font-semibold');
-                    }
-                });
-            });
-        }
-
-        // Quiz functionality
-        function startQuiz() {
-            // Create quiz modal if it doesn't exist
-            if (!document.getElementById('quizModal')) {
-                const quizModal = document.createElement('div');
-                quizModal.id = 'quizModal';
-                quizModal.className = 'modal';
-                quizModal.innerHTML = `
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="text-2xl font-bold text-primary flex items-center gap-2">
-                                <i class="fas fa-brain"></i>
-                                Kuis Pengetahuan
-                            </h3>
-                            <button onclick="closeModal('quizModal')" class="text-slate-500 hover:text-primary">
-                                <i class="fas fa-times text-xl"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="quiz-container">
-                                <div id="quiz-question" class="mb-6"></div>
-                                <div id="quiz-options" class="mb-6"></div>
-                                <div id="quiz-result" class="mb-6"></div>
-                                <button onclick="nextQuestion()" id="next-btn" class="bg-green-500 text-white px-6 py-2 rounded-lg hidden">Pertanyaan Selanjutnya</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                document.body.appendChild(quizModal);
+        // Subtle parallax effect for hero section background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < hero.offsetHeight) {
+                const parallaxSpeed = scrolled * 0.3;
+                hero.style.backgroundPosition = `center ${parallaxSpeed}px`;
             }
+        });
 
-            currentQuestion = 0;
-            score = 0;
-            openModal('quizModal');
-            showQuestion();
-        }
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
 
-        function showQuestion() {
-            const question = quizQuestions[currentQuestion];
-            const questionDiv = document.getElementById('quiz-question');
-            const optionsContainer = document.getElementById('quiz-options');
-
-            questionDiv.innerHTML = `
-                <div class="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg p-6 border border-primary/20">
-                    <h4 class="text-xl font-bold text-primary mb-4 flex items-center gap-2">
-                        <i class="fas fa-question-circle"></i>
-                        Pertanyaan ${currentQuestion + 1} dari ${quizQuestions.length}
-                    </h4>
-                    <p class="text-lg text-slate-700 dark:text-slate-300">${question.question}</p>
-                </div>
-            `;
-
-            optionsContainer.innerHTML = '';
-
-            question.options.forEach((option, index) => {
-                const button = document.createElement('button');
-                button.textContent = option;
-                button.className = 'w-full text-left p-4 mb-3 rounded-lg border-2 border-slate-200 dark:border-slate-600 hover:border-primary hover:bg-primary/5 transition-all duration-300';
-                button.onclick = () => selectAnswer(index);
-                optionsContainer.appendChild(button);
-            });
-
-            document.getElementById('quiz-result').innerHTML = '';
-            const nextBtn = document.getElementById('next-btn');
-            if (nextBtn) nextBtn.classList.add('hidden');
-        }
-
-        function selectAnswer(selectedIndex) {
-            const question = quizQuestions[currentQuestion];
-            const resultDiv = document.getElementById('quiz-result');
-            const nextBtn = document.getElementById('next-btn');
-
-            if (selectedIndex === question.correct) {
-                score++;
-                resultDiv.innerHTML = `
-                    <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
-                        <p class="text-green-700 dark:text-green-300 font-semibold flex items-center gap-2">
-                            <i class="fas fa-check-circle"></i>
-                            Benar! ${question.explanation}
-                        </p>
-                    </div>
-                `;
+        // Image Modal Functionality
+        function openImageModal(imageSrc, locationName) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalPlaceholder = document.getElementById('modalPlaceholder');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            // Check if image is placeholder
+            if (imageSrc.includes('[Masukkan gambar') || !imageSrc || imageSrc.trim() === '') {
+                modalImage.style.display = 'none';
+                modalPlaceholder.style.display = 'block';
             } else {
-                resultDiv.innerHTML = `
-                    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-                        <p class="text-red-700 dark:text-red-300 font-semibold flex items-center gap-2 mb-2">
-                            <i class="fas fa-times-circle"></i>
-                            Salah!
-                        </p>
-                        <p class="text-slate-600 dark:text-slate-400">Jawaban yang benar: <strong>${question.options[question.correct]}</strong></p>
-                        <p class="text-slate-600 dark:text-slate-400 mt-2">${question.explanation}</p>
-                    </div>
-                `;
+                modalImage.src = imageSrc;
+                modalImage.alt = `Gambar ${locationName}`;
+                modalImage.style.display = 'block';
+                modalPlaceholder.style.display = 'none';
             }
-
-            if (nextBtn) nextBtn.classList.remove('hidden');
+            
+            modalTitle.textContent = locationName;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scroll
         }
 
-        function nextQuestion() {
-            currentQuestion++;
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scroll
+        }
 
-            if (currentQuestion < quizQuestions.length) {
-                showQuestion();
-            } else {
-                showResult();
+        // Add click event to location list items
+        document.querySelectorAll('.location-list li').forEach(item => {
+            item.addEventListener('click', function() {
+                const imageSrc = this.getAttribute('data-image');
+                const locationName = this.getAttribute('data-location');
+                openImageModal(imageSrc, locationName);
+            });
+        });
+
+        // Close modal when clicking outside the image
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeImageModal();
             }
-        }
+        });
 
-        function showResult() {
-            const quizContainer = document.getElementById('quiz-container');
-            const percentage = Math.round((score / quizQuestions.length) * 100);
-
-            quizContainer.innerHTML = `
-                <div class="text-center py-8">
-                    <div class="mb-6">
-                        <i class="fas fa-trophy text-6xl ${score >= 4 ? 'text-yellow-500' : score >= 2 ? 'text-blue-500' : 'text-slate-400'} mb-4"></i>
-                        <h4 class="text-3xl font-bold text-primary mb-2">Kuis Selesai!</h4>
-                        <div class="text-6xl font-bold text-slate-800 dark:text-slate-200 mb-4">${score}/${quizQuestions.length}</div>
-                        <div class="text-lg text-slate-600 dark:text-slate-400 mb-6">Skor: ${percentage}%</div>
-                    </div>
-
-                    <div class="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg p-6 mb-6 border border-primary/20">
-                        <p class="text-lg font-semibold text-primary mb-2">
-                            ${score >= 4 ? '🎉 Selamat! Anda sangat mengenal Sunan Kalijaga!' :
-                              score >= 2 ? '👍 Bagus! Anda memiliki pengetahuan yang cukup.' :
-                              '📚 Terus belajar tentang Sunan Kalijaga!'}
-                        </p>
-                        <p class="text-slate-600 dark:text-slate-400">
-                            ${score >= 4 ? 'Pengetahuan Anda tentang Sunan Kalijaga sangat baik. Terus pelajari warisan budaya Islam Nusantara!' :
-                              score >= 2 ? 'Anda memiliki pemahaman yang baik tentang Sunan Kalijaga. Mari eksplor lebih dalam!' :
-                              'Sunan Kalijaga memiliki banyak sekali pelajaran berharga. Mari mulai dari sekarang!'}
-                        </p>
-                    </div>
-
-                    <div class="flex gap-4 justify-center">
-                        <button onclick="startQuiz()" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors duration-300 flex items-center gap-2">
-                            <i class="fas fa-redo"></i>
-                            <span>Ulangi Kuis</span>
-                        </button>
-                        <button onclick="closeModal('quizModal')" class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-6 py-3 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors duration-300">
-                            Tutup
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Add some additional interactive features
+        // Close modal with Escape key
         document.addEventListener('keydown', function(e) {
-            // Close modals with Escape key
             if (e.key === 'Escape') {
-                const modals = document.querySelectorAll('.modal');
-                modals.forEach(modal => {
-                    if (modal.style.display === 'block') {
-                        modal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }
-                });
+                closeImageModal();
             }
         });
-
-        // Add loading animation for images
-        const images = document.querySelectorAll('img');
-        images.forEach(img => {
-            img.addEventListener('load', function() {
-                this.style.opacity = '1';
-                this.style.transition = 'opacity 0.3s ease';
-            });
-        });
-
-        // Video control functionality
-        function changeVideo(videoId) {
-            const iframe = document.querySelector('#videoModal iframe');
-            if (iframe && videoId) {
-                // Update iframe src with new video ID
-                const newSrc = `https://www.youtube.com/embed/${videoId}`;
-                iframe.src = newSrc;
-
-                // Show success message
-                const modalBody = document.querySelector('#videoModal .modal-body');
-                const existingMessage = document.querySelector('#video-change-message');
-                if (existingMessage) {
-                    existingMessage.remove();
-                }
-
-                const message = document.createElement('div');
-                message.id = 'video-change-message';
-                message.className = 'mb-4 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg';
-                message.innerHTML = `
-                    <p class="text-green-700 dark:text-green-300 text-sm flex items-center gap-2">
-                        <i class="fas fa-check-circle"></i>
-                        Video berhasil diubah!
-                    </p>
-                `;
-
-                const descriptionDiv = modalBody.querySelector('.mt-6');
-                modalBody.insertBefore(message, descriptionDiv);
-
-                // Auto-hide message after 3 seconds
-                setTimeout(() => {
-                    if (message && message.parentNode) {
-                        message.remove();
-                    }
-                }, 3000);
-            }
-        }
-
-        // Add hover effects for interactive elements
-        const interactiveElements = document.querySelectorAll('.gallery-item, .tab-btn, .sidebar-link');
-        interactiveElements.forEach(element => {
-            element.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px)';
-            });
-
-            element.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-
-        console.log('Semua fitur interaktif telah dimuat!');
     </script>
 </body>
 </html>
+

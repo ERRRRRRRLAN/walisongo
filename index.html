@@ -151,22 +151,20 @@
             background: none;
             border: none;
             color: white;
-            font-size: 1.8rem;
             cursor: pointer;
             padding: 0.5rem;
-            transition: transform 0.3s ease;
             position: relative;
             width: 40px;
             height: 40px;
             z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
         .mobile-menu-btn:hover {
             transform: scale(1.1);
-        }
-
-        .mobile-menu-btn.active {
-            transform: rotate(90deg);
+            transition: transform 0.2s ease;
         }
 
         .mobile-menu-btn span {
@@ -174,21 +172,50 @@
             width: 25px;
             height: 3px;
             background: white;
-            margin: 5px 0;
-            transition: all 0.3s ease;
+            margin: 0;
+            transition: all 0.35s cubic-bezier(0.68, -0.6, 0.32, 1.6);
             border-radius: 2px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            visibility: visible;
+            opacity: 1;
+            transform-origin: center center;
+        }
+
+        .mobile-menu-btn span:nth-child(1) {
+            top: 9px;
+            transition-delay: 0s;
+        }
+
+        .mobile-menu-btn span:nth-child(2) {
+            top: 50%;
+            margin-top: -1.5px;
+            transition-delay: 0.05s;
+        }
+
+        .mobile-menu-btn span:nth-child(3) {
+            bottom: 9px;
+            transition-delay: 0.1s;
         }
 
         .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(45deg);
+            transition-delay: 0.1s;
         }
 
         .mobile-menu-btn.active span:nth-child(2) {
             opacity: 0;
+            transform: translateX(-50%) scaleX(0);
+            transition-delay: 0s;
         }
 
         .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
+            bottom: auto;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+            transition-delay: 0.1s;
         }
 
         /* Hero Section */
@@ -1104,10 +1131,27 @@
             }
 
             .mobile-menu-btn {
-                display: flex;
+                display: flex !important;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                visibility: visible !important;
+                opacity: 1 !important;
+                min-width: 40px;
+                min-height: 40px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .mobile-menu-btn span {
+                display: block !important;
+                width: 25px;
+                height: 3px;
+                background: white !important;
+                margin: 3px 0;
+                visibility: visible !important;
+                opacity: 1 !important;
+                box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
             }
 
             .logo {
